@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "user")
 @Data
@@ -19,11 +22,17 @@ public class User extends BaseEntity {
     private Long id;
 
     private String name;
+
+    @Column(unique = true, nullable = false)
     private String email;
+
+    @Column(nullable = false)
     private String password;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Role role;
-
-    private boolean isVerified;
+    private Boolean isVerified;
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private Set<ProductDetail> productDetails;
 }

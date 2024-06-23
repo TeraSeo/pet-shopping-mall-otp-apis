@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
         Optional<User> u = userRepository.findByEmail(email);
         if (u.isPresent()) {
             User user = u.get();
-            user.setVerified(isVerified);
+            user.setIsVerified(isVerified);
             userRepository.save(user);
             return;
         }
