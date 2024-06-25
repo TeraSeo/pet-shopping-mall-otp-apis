@@ -33,6 +33,6 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     private Role role;
     private Boolean isVerified;
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.PERSIST)
     private Set<ProductDetail> productDetails;
 }
